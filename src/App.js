@@ -1,26 +1,40 @@
-import React from 'react';
-import logo from './logo.svg';
+// import React from 'react';
 import './App.css';
+import React, {Component} from 'react';
+import {Route, BrowserRouter, Link} from 'react-router-dom';
+import HelloWorld from './HelloWorld.js';
+import HelloUser from './HelloUser.js';
+import Counter from './Counter.js'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+    render() {
+        return (
+            <BrowserRouter>
+                <div className='App'>
+                    <nav>
+                        <ul>
+                            <li>
+                                <Link to="/">Home</Link>
+                            </li>
+                            <li>
+                                <Link to="/helloworld">HelloWorld</Link>
+                            </li>
+                            <li>
+                                <Link to="/hellouser">HelloUser</Link>
+                            </li>
+                            <li>
+                                <Link to="/Counter">Counter</Link>
+                            </li>
+                        </ul>
+                    </nav>
+                    <Route path="/helloworld/:helloWorldId" component={HelloWorld} />
+                    <Route path='/hellouser/:helloUserId' component={HelloUser} />
+                    <Route path='/counter/:counterId' component={Counter} />
+                </div>
+            </BrowserRouter>
+               
+        )
+    }
 }
 
 export default App;
